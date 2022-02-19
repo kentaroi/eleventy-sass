@@ -1,0 +1,32 @@
+{
+  "name": "eleventy-sass",
+  "version": "1.0.0",
+  "description": "Yet another Sass/SCSS plugin for Eleventy",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kentaroi/eleventy-sass.git"
+  },
+  "keywords": [
+    "Sass",
+    "SCSS",
+    "eleventy",
+    "11ty",
+    "eleventy-plugin"
+  ],
+  "author": "Kentaro Imai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kentaroi/eleventy-sass/issues"
+  },
+  "homepage": "https://github.com/kentaroi/eleventy-sass#readme",
+  "dependencies": {
+    "sass": "^1.49.7"
+  },
+  "peerDependencies": {
+    "debug": "^4.3.3"
+  }
+}
