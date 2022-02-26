@@ -38,7 +38,7 @@ module.exports = function(eleventyConfig) {
 [eleventy-sass](https://github.com/kentaroi/eleventy-sass) allows you to customize the behavior by options like follows:
 
 ```javascript
-const path = require("node:path");
+const path = require("path");
 const eleventySass = require("eleventy-sass");
 
 const options = {
