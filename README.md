@@ -137,6 +137,9 @@ If you do not specify any options, [eleventy-sass](https://github.com/kentaroi/e
     cache: true,
     getCacheKey: function(contents, inputPath) { /* snip */ },
   },
+  getData: async function(inputPath) {
+    return { eleventyComputed: { layout: false } };
+  },
   sass: {
     loadPaths: [/* The includes directory of your Eleventy project */],
     style: "compressed",
@@ -153,6 +156,9 @@ If you do not specify any options, [eleventy-sass](https://github.com/kentaroi/e
   compileOptions: {
     cache: true,
     getCacheKey: function(contents, inputPath) { /* snip */ },
+  },
+  getData: async function(inputPath) {
+    return { eleventyComputed: { layout: false } };
   },
   sass: {
     loadPaths: [/* The includes directory of your Eleventy project */],
