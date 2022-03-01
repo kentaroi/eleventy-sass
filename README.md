@@ -33,6 +33,48 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(eleventySass);
 };
 ```
+That's it. Only the above code in your `.eleventy.js`, your Sass/SCSS files will be compiled to CSS and outputted in your `output` directory.
+
+### Default behavior
+Suppose your have the following `.eleventy.js`. In this example, your [input directory](https://www.11ty.dev/docs/config/#input-directory) is "src" and your [output directory](https://www.11ty.dev/docs/config/#output-directory) is "dist" since it seems to be widely used settings in Eleventy community.
+
+```javascript
+const eleventySass = require("eleventy-sass");
+
+module.exports = function(eleventyConfig) {
+  eleventyConfig.addPlugin(eleventySass);
+
+  return { dir: { input: "src", output: "dist" } };
+};
+```
+
+and execute `npx @11ty/eleventy` or `npx @11ty/elventy --serve` from your shell, you will get the following:
+```bash
+├── .eleventy.js
+├── dist
+│   ├── index.html
+│   └── stylesheets
+│       ├── accessibility
+│       │   └── large-style.css
+│       └── style.css
+├── package-lock.json
+├── package.json
+└── src
+    ├── _includes
+    │   └── tag-cloud.scss
+    ├── index.md
+    └── stylesheets
+        ├── accessibility
+        │   └── large-style.scss
+        ├── style.scss
+        └── themes
+            └── _gruvbox.scss
+```
+As you can see, your Sass/SCSS files in your [input](https://www.11ty.dev/docs/config/#input-directory) ("src") directory, no matter how deep they are, are compiled and outputted in your [output](https://www.11ty.dev/docs/config/#output-directory) ("dist") directory unless they are in [includes](https://www.11ty.dev/docs/config/#directory-for-includes) ("\_includes") directory or their filenames start with "\_".
+
+Files in [includes](https://www.11ty.dev/docs/config/#directory-for-includes) directory and files whose filenames start with "\_" are not compiled directly but can be used from the other Sass/SCSS files with `@use` and `@forward` rules.
+
+For example, `_gruvbox.scss` file in the above example can be loaded from `style.scss` file with `@use "themes/gruvbox";`, and `tag-cloud.scss` file can be loaded from `style.scss` file with `@use "tag-cloud";`. (The reason you don't have to specify it with `@use "../_includes/tag-cloud";` is that [includes](https://www.11ty.dev/docs/config/#directory-for-includes) ("\_includes") directory is the default `loadPaths` for [eleventy-sass](https://github.com/kentaroi/eleventy-sass). I will describe `loadPaths` [later in this README](#loadpaths-and-includes-keys).)
 
 ## Options
 [eleventy-sass](https://github.com/kentaroi/eleventy-sass) allows you to customize the behavior by options like follows:
@@ -68,11 +110,18 @@ Basically, `options` you pass as the second argument for `addPlugin()` is used f
 
 However, there are two exceptions.
 
-One is `defaultEleventyEnv` key. As described later, [eleventy-sass](https://github.com/kentaroi/eleventy-sass) changes behavior based on the environment/shell variable `ELEVENTY_ENV` and if `ELEVENTY_ENV` is not supplied, it considers the environment `production`. If you want to change this default behavior, you can set the default environment to the value for `defaultEleventyEnv` key.
+### `defaultEleventyEnv` key
+One is `defaultEleventyEnv` key. [As described later](#default-options), [eleventy-sass](https://github.com/kentaroi/eleventy-sass) changes behavior based on the environment/shell variable `ELEVENTY_ENV` and if `ELEVENTY_ENV` is not supplied, it considers the environment `production`. If you want to change this default behavior, you can set the default environment to the value for `defaultEleventyEnv` key.
 
+### `sass` key
 The other exception is `sass` key. The value for `sass` key is used for options for `sass.compileString()`, [a dart-sass API function](https://sass-lang.com/documentation/js-api/modules#compileString), which also [eleventy-sass](https://github.com/kentaroi/eleventy-sass) calls internally. For details, please read [the Sass documentation](https://sass-lang.com/documentation/js-api/modules#StringOptions).
 
-You can use `includes` key instead of `loadPaths` key in this `sass` options, for convenience. The value for `includes` key should be of type Array or String and relative to the `input` directory.
+#### `loadPaths` and `includes` keys
+`loadPaths` is a key for the value for `sass` key in the option, and is actually a key for `sass.compileString()`, [a dart-sass API function](https://sass-lang.com/documentation/js-api/modules#compileString). `loadPaths` value should be of type Array. The default `loadPaths` value is an array which contains only [includes directory](https://www.11ty.dev/docs/config/#directory-for-includes) of your Eleventy project.
+
+`loadPaths` is not supposed to be used for specifying your Sass/SCSS files' paths, instead for specifying load paths for `@use` or `@forward` rules in your Sass/SCSS files. The paths are interpreted relative to your Eleventy project root.
+
+You can use `includes` key instead of `loadPaths` key in this `sass` options, for convenience. The value for `includes` key should be of type Array or String and is interpreted relative to the [input directory](https://www.11ty.dev/docs/config/#input-directory).
 
 For example, when your `input` directory is the project root,
 ```javascript
@@ -125,6 +174,8 @@ eleventyConfig.addPlugin(eleventySass, {
 });
 ```
 
+If you set a value for `loadPaths` or `includes` key in the value for `sass` key, the default value, [includes directory](https://www.11ty.dev/docs/config/#directory-for-includes), will be removed from the `loadPaths`. Therefore, if you want to add a directory to `loadPaths` in addition to the default [includes directory](https://www.11ty.dev/docs/config/#directory-for-includes), you have to set an array which contains both the new directory and the [includes directory](https://www.11ty.dev/docs/config/#directory-for-includes).
+
 ### Default options
 If you do not specify any options, [eleventy-sass](https://github.com/kentaroi/eleventy-sass) uses the default options. By default, [eleventy-sass](https://github.com/kentaroi/eleventy-sass) checks `ELEVENTY_ENV` environment/shell variable, and if it is "production", "prod", "p", or something like that or if there is no `ELEVENTY_ENV` variable, it considers the environment `production`.
 
@@ -176,7 +227,7 @@ export ELEVENTY_ENV=development
 ```
 the environment is `development` locally, and you have a `production` environment, for example, in [GitHub Actions](https://github.com/features/actions) by default, because [eleventy-sass](https://github.com/kentaroi/eleventy-sass) regards no `ELEVENTY_ENV` variable as `production`. (This default behavior can also be modified by setting the value for `defaultEleventyEnv` key in the options for `addPlugin()`.)
 
-And, of course, you can specify an environment from your shell like this:
+And, of course, you can specify an environment from your shell prompt like this:
 ```bash
 ELEVENTY_ENV=production npx @11ty/eleventy --serve
 ```
@@ -193,7 +244,7 @@ module.exports = function(eleventyConfig) {
     compileOptions: {
       permalink: function(contents, inputPath) {
         return (data) => {
-          return data.page.filePathStem.replace(/^\/scss/, "/css") + ".css";
+          return data.page.filePathStem.replace(/^\/scss\//, "/css/") + ".css";
         };
       }
     }
@@ -248,6 +299,24 @@ module.exports = function(eleventyConfig) {
     }
   });
 };
+```
+
+## Debug mode
+You can see verbose outputs by using `DEBUG` environment/shell variable (cf. [DEBUG MODE](https://www.11ty.dev/docs/debugging/)).
+
+```bash
+DEBUG=Eleventy* npx @11ty/eleventy
+```
+
+If you want to see only the [eleventy-sass](https://github.com/kentaroi/eleventy-sass)'s verbose outpus, change the value for `DEBUG` environment/shell variable like this:
+
+```bash
+DEBUG=EleventySass* npx @11ty/eleventy
+```
+
+or, if you prefer more verbose outputs, like this:
+```bash
+DEBUG=*EleventySass* npx @11ty/eleventy
 ```
 
 ## How [eleventy-sass](https://github.com/kentaroi/eleventy-sass) handles Sass/SCSS files
