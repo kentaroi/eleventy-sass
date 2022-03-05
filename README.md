@@ -182,15 +182,12 @@ If you do not specify any options, [eleventy-sass](https://github.com/kentaroi/e
 ```javascript
 // If the environment is production, the default options are:
 {
-  outputFileExtension: "css",
-  compile: async function(inputContent, inputPath) { /* snip */ },
   compileOptions: {
     cache: true,
-    getCacheKey: function(contents, inputPath) { /* snip */ },
   },
   getData: async function(inputPath) {
     return { eleventyComputed: { layout: false } };
-  },
+  }, // No layouts should be applied.
   sass: {
     loadPaths: [/* The includes directory of your Eleventy project */],
     style: "compressed",
@@ -202,15 +199,12 @@ If you do not specify any options, [eleventy-sass](https://github.com/kentaroi/e
 
 // If not, the default options are:
 {
-  outputFileExtension: "css",
-  compile: async function(inputContent, inputPath) { /* snip */ },
   compileOptions: {
     cache: true,
-    getCacheKey: function(contents, inputPath) { /* snip */ },
   },
   getData: async function(inputPath) {
     return { eleventyComputed: { layout: false } };
-  },
+  }, // No layouts should be applied.
   sass: {
     loadPaths: [/* The includes directory of your Eleventy project */],
     style: "expanded",
@@ -220,6 +214,8 @@ If you do not specify any options, [eleventy-sass](https://github.com/kentaroi/e
   defaultEleventyEnv: "production"
 }
 ```
+
+The above is the default options. In short, they say [eleventy-sass](https://github.com/kentaroi/eleventy-sass) outputs minified CSSes without source maps in `production` environment, otherwise outputs readable CSSes with source maps.
 
 For example, if you add the following line in your `.bash_profile`, `.bashrc`, `.zshrc`, etc. on your local PC,
 ```bash
