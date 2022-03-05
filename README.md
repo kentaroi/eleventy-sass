@@ -117,11 +117,11 @@ One is `defaultEleventyEnv` key. [As described later](#default-options), [eleven
 The other exception is `sass` key. The value for `sass` key is used for options for `sass.compileString()`, [a dart-sass API function](https://sass-lang.com/documentation/js-api/modules#compileString), which also [eleventy-sass](https://github.com/kentaroi/eleventy-sass) calls internally. For details, please read [the Sass documentation](https://sass-lang.com/documentation/js-api/modules#StringOptions).
 
 #### `loadPaths` and `includes` keys
-`loadPaths` is a key for the value for `sass` key in the option, and is actually a key for `sass.compileString()`, [a dart-sass API function](https://sass-lang.com/documentation/js-api/modules#compileString). `loadPaths` value should be of type Array. The default `loadPaths` value is an array which contains only [includes directory](https://www.11ty.dev/docs/config/#directory-for-includes) of your Eleventy project.
+`loadPaths` is a key for the value for `sass` key in the option, and is actually a key for the options for `sass.compileString()`, [a dart-sass API function](https://sass-lang.com/documentation/js-api/modules#compileString). `loadPaths` value should be of type Array. The default `loadPaths` value is an array which contains only [includes directory](https://www.11ty.dev/docs/config/#directory-for-includes) of your Eleventy project.
 
 `loadPaths` is not supposed to be used for specifying your Sass/SCSS files' paths, instead for specifying load paths for `@use` or `@forward` rules in your Sass/SCSS files. The paths are interpreted relative to your Eleventy project root.
 
-You can use `includes` key instead of `loadPaths` key in this `sass` options, for convenience. The value for `includes` key should be of type Array or String and is interpreted relative to the [input directory](https://www.11ty.dev/docs/config/#input-directory).
+You can use `includes` key instead of (or in addition to) `loadPaths` key in this `sass` options, for convenience. The value for `includes` key should be of type Array or String and is interpreted relative to the [input directory](https://www.11ty.dev/docs/config/#input-directory).
 
 For example, when your `input` directory is the project root,
 ```javascript
@@ -304,7 +304,7 @@ You can see verbose outputs by using `DEBUG` environment/shell variable (cf. [DE
 DEBUG=Eleventy* npx @11ty/eleventy
 ```
 
-If you want to see only the [eleventy-sass](https://github.com/kentaroi/eleventy-sass)'s verbose outpus, change the value for `DEBUG` environment/shell variable like this:
+If you want to see only the [eleventy-sass](https://github.com/kentaroi/eleventy-sass)'s verbose outputs, change the value for `DEBUG` environment/shell variable like this:
 
 ```bash
 DEBUG=EleventySass* npx @11ty/eleventy
