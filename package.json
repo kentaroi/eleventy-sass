@@ -24,9 +24,7 @@
   },
   "homepage": "https://github.com/kentaroi/eleventy-sass#readme",
   "dependencies": {
-    "sass": "^1.49.7"
-  },
-  "peerDependencies": {
+    "sass": "^1.49.7",
     "debug": "^4.3.3",
     "kleur": "^4.1.4"
   }
