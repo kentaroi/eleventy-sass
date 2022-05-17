@@ -108,13 +108,13 @@ module.exports = function(eleventyConfig) {
 
 Basically, `options` you pass as the second argument for `addPlugin()` is used for options for `eleventyConfig.addExtension()`, which [eleventy-sass](https://github.com/kentaroi/eleventy-sass) calls internally. The full options list is [provided in the official Docs](https://www.11ty.dev/docs/languages/custom/#full-options-list).
 
-However, there are two exceptions.
+However, there are three exceptions.
 
 ### `defaultEleventyEnv` key
-One is `defaultEleventyEnv` key. [As described later](#default-options), [eleventy-sass](https://github.com/kentaroi/eleventy-sass) changes behavior based on the environment/shell variable `ELEVENTY_ENV` and if `ELEVENTY_ENV` is not supplied, it considers the environment `production`. If you want to change this default behavior, you can set the default environment to the value for `defaultEleventyEnv` key.
+The first exception is `defaultEleventyEnv` key. [As described later](#default-options), [eleventy-sass](https://github.com/kentaroi/eleventy-sass) changes behavior based on the environment/shell variable `ELEVENTY_ENV` and if `ELEVENTY_ENV` is not supplied, it considers the environment `production`. If you want to change this default behavior, you can set the default environment to the value for `defaultEleventyEnv` key.
 
 ### `sass` key
-The other exception is `sass` key. The value for `sass` key is used for options for `sass.compileString()`, [a dart-sass API function](https://sass-lang.com/documentation/js-api/modules#compileString), which also [eleventy-sass](https://github.com/kentaroi/eleventy-sass) calls internally. For details, please read [the Sass documentation](https://sass-lang.com/documentation/js-api/modules#StringOptions).
+The second exception is `sass` key. The value for `sass` key is used for options for `sass.compileString()`, [a dart-sass API function](https://sass-lang.com/documentation/js-api/modules#compileString), which also [eleventy-sass](https://github.com/kentaroi/eleventy-sass) calls internally. For details, please read [the Sass documentation](https://sass-lang.com/documentation/js-api/modules#StringOptions).
 
 #### `loadPaths` and `includes` keys
 `loadPaths` is a key for the value for `sass` key in the option, and is actually a key for the options for `sass.compileString()`, [a dart-sass API function](https://sass-lang.com/documentation/js-api/modules#compileString). `loadPaths` value should be of type Array. The default `loadPaths` value is an array which contains only [includes directory](https://www.11ty.dev/docs/config/#directory-for-includes) of your Eleventy project.
@@ -175,6 +175,23 @@ eleventyConfig.addPlugin(eleventySass, {
 ```
 
 If you set a value for `loadPaths` or `includes` key in the value for `sass` key, the default value, [includes directory](https://www.11ty.dev/docs/config/#directory-for-includes), will be removed from the `loadPaths`. Therefore, if you want to add a directory to `loadPaths` in addition to the default [includes directory](https://www.11ty.dev/docs/config/#directory-for-includes), you have to set an array which contains both the new directory and the [includes directory](https://www.11ty.dev/docs/config/#directory-for-includes).
+
+### `postcss` key
+The final exception is `postcss` key. Some of you might want to apply [PostCSS](https://github.com/postcss/postcss) to the compiled CSS from Sass/SCSS files, and it is quite easy and fully configurable by using the Eleventy's [Transforms](https://www.11ty.dev/docs/config/#transforms).
+
+Alternatively, you can set [PostCSS](https://github.com/postcss/postcss) object to the value for `postcss` key, and [eleventy-sass](https://github.com/kentaroi/eleventy-sass) automatically apply the [PostCSS](https://github.com/postcss/postcss) object to the compiled CSS files.
+```javascript
+const eleventySass = require("eleventy-sass");
+const postcss = require("postcss");
+const rtlcss = require("rtlcss");
+const cssnano = require("cssnano");
+
+module.exports = function(eleventyConfig) {
+  eleventyConfig.addPlugin(eleventySass, {
+    postcss: postcss([rtlcss, cssnano])
+  });
+};
+```
 
 ### Default options
 If you do not specify any options, [eleventy-sass](https://github.com/kentaroi/eleventy-sass) uses the default options. By default, [eleventy-sass](https://github.com/kentaroi/eleventy-sass) checks `ELEVENTY_ENV` environment/shell variable, and if it is "production", "prod", "p", or something like that or if there is no `ELEVENTY_ENV` variable, it considers the environment `production`.
@@ -296,6 +313,41 @@ module.exports = function(eleventyConfig) {
   });
 };
 ```
+
+#### How to use PostCSS and Autoprefixer to support older browsers
+Install [PostCSS](https://github.com/postcss/postcss) and [Autoprefixer](https://github.com/postcss/autoprefixer)
+```bash
+npm install postcss autoprefixer
+```
+
+Configure your `.eleventy.js` as follows:
+```javascript
+const eleventySass = require("eleventy-sass");
+const postcss = require("postcss");
+const autoprefixer = require("autoprefixer");
+
+module.exports = function(eleventyConfig) {
+  eleventyConfig.addPlugin(eleventySass, {
+    postcss: postcss([autoprefixer])
+  });
+};
+```
+
+Edit your `package.json`, for example:
+```json5
+{
+  // ...
+  "browserslist": [
+    "last 1 chrome version",
+    "last 1 firefox version",
+    "last 1 safari version",
+    "last 1 ie version"
+  ]
+  // ...
+}
+```
+
+See [Autoprefixer](https://github.com/postcss/autoprefixer) and [Browserslist](https://github.com/browserslist/browserslist) for more details.
 
 ## Debug mode
 You can see verbose outputs by using `DEBUG` environment/shell variable (cf. [DEBUG MODE](https://www.11ty.dev/docs/debugging/)).
