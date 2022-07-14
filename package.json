@@ -29,6 +29,16 @@
     "sass": "^1.49.7"
   },
   "devDependencies": {
-    "ava": "^4.3.0"
+    "ava": "^4.3.0",
+    "eleventy-plugin-rev": "github:kentaroi/eleventy-plugin-rev"
+  },
+  "peerDependencies": {
+    "@11ty/eleventy": "^1.0",
+    "eleventy-plugin-rev": "github:kentaroi/eleventy-plugin-rev"
+  },
+  "peerDependenciesMeta": {
+    "eleventy-plugin-rev": {
+      "optional": true
+    }
   }
 }
