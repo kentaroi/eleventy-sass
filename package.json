@@ -1,7 +1,7 @@
 {
   "name": "eleventy-sass",
   "version": "1.3.1",
-  "description": "Yet another Sass/SCSS plugin for Eleventy",
+  "description": "Yet another Sass/SCSS plugin for Eleventy. Source maps, PostCSS and revision hashes are supported.",
   "main": "index.js",
   "scripts": {
     "test": "npx ava"
@@ -11,11 +11,11 @@
     "url": "git+https://github.com/kentaroi/eleventy-sass.git"
   },
   "keywords": [
+    "eleventy-plugin",
     "Sass",
     "SCSS",
     "eleventy",
-    "11ty",
-    "eleventy-plugin"
+    "11ty"
   ],
   "author": "Kentaro Imai",
   "license": "MIT",
