@@ -30,11 +30,11 @@
   },
   "devDependencies": {
     "ava": "^4.3.0",
-    "eleventy-plugin-rev": "github:kentaroi/eleventy-plugin-rev"
+    "eleventy-plugin-rev": "^1.0.1"
   },
   "peerDependencies": {
-    "@11ty/eleventy": "^1.0",
-    "eleventy-plugin-rev": "github:kentaroi/eleventy-plugin-rev"
+    "@11ty/eleventy": "^1.0.0",
+    "eleventy-plugin-rev": "^1.0.1"
   },
   "peerDependenciesMeta": {
     "eleventy-plugin-rev": {
