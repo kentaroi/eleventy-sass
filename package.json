@@ -30,11 +30,11 @@
   },
   "devDependencies": {
     "ava": "^4.3.0",
-    "eleventy-plugin-rev": "^1.0.1"
+    "eleventy-plugin-rev": "^1.0.2"
   },
   "peerDependencies": {
     "@11ty/eleventy": "^1.0.0",
-    "eleventy-plugin-rev": "^1.0.1"
+    "eleventy-plugin-rev": "^1.0.2"
   },
   "peerDependenciesMeta": {
     "eleventy-plugin-rev": {
