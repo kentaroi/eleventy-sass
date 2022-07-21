@@ -1,5 +1,9 @@
 # eleventy-sass
 
+[![npm](https://img.shields.io/npm/v/eleventy-sass)](https://www.npmjs.com/package/eleventy-sass)
+[![CI](https://github.com/kentaroi/eleventy-sass/workflows/CI/badge.svg?branch=main)](https://github.com/kentaroi/eleventy-sass/actions?query=branch%3Amain+workflow%3ACI)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/kentaroi/eleventy-sass/blob/main/LICENSE)
+
 Yet another Sass/SCSS plugin for [Eleventy](https://www.11ty.dev/).
 
 Source maps, PostCSS and revision hashes are supported.
