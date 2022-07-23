@@ -29,12 +29,12 @@
     "sass": "^1.49.7"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^1.0.0",
+    "@11ty/eleventy": "^1.0.0 || ^2.0.0-canary.12",
     "ava": "^4.3.0",
     "eleventy-plugin-rev": "^1.0.2"
   },
   "peerDependencies": {
-    "@11ty/eleventy": "^1.0.0",
+    "@11ty/eleventy": "^1.0.0 || ^2.0.0-canary.12",
     "eleventy-plugin-rev": "^1.0.2"
   },
   "peerDependenciesMeta": {
