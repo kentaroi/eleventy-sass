@@ -155,6 +155,10 @@ module.exports = function(eleventyConfig) {
 #### `rev` property
 If you want to add revision hashes to the compiled CSS filenames, you can set `true` to `rev` property and add [eleventy-plugin-rev](https://github.com/kentaroi/eleventy-plugin-rev) as follows:
 
+```bash
+npm install eleventy-plugin-rev
+```
+
 ```javascript
 // .eleventy.js
 const pluginRev = require("eleventy-plugin-rev");
@@ -230,7 +234,7 @@ module.exports = function(eleventyConfig) {
       compileOptions: {
         permalink: function(permalinkString, inputPath) {
           return (data) => {
-            return data.page.filePathStem.replace(/\/scss\//, "css") + ".css";
+            return data.page.filePathStem.replace(/^\/scss\//, "/css/") + ".css";
           };
         }
       },
