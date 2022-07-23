@@ -1,6 +1,7 @@
 # eleventy-sass
 
 [![npm](https://img.shields.io/npm/v/eleventy-sass)](https://www.npmjs.com/package/eleventy-sass)
+[![npm peer dependency version](https://img.shields.io/npm/dependency-version/eleventy-sass/peer/@11ty/eleventy)](https://github.com/11ty/eleventy)
 [![CI](https://github.com/kentaroi/eleventy-sass/workflows/CI/badge.svg?branch=main)](https://github.com/kentaroi/eleventy-sass/actions?query=branch%3Amain+workflow%3ACI)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/kentaroi/eleventy-sass/blob/main/LICENSE)
 
