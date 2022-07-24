@@ -35,10 +35,14 @@
   },
   "peerDependencies": {
     "@11ty/eleventy": "^1.0.0 || ^2.0.0-canary.12",
-    "eleventy-plugin-rev": "^1.0.2"
+    "eleventy-plugin-rev": "^1.0.2",
+    "eleventy-plugin-clean": "^1.1.0"
   },
   "peerDependenciesMeta": {
     "eleventy-plugin-rev": {
+      "optional": true
+    },
+    "eleventy-plugin-clean": {
       "optional": true
     }
   }
