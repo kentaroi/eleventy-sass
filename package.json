@@ -4,7 +4,7 @@
   "description": "Yet another Sass/SCSS plugin for Eleventy. Source maps, PostCSS and revision hashes are supported.",
   "main": "index.js",
   "scripts": {
-    "test": "npx ava"
+    "test": "npx ava --timeout=30s"
   },
   "repository": {
     "type": "git",
@@ -30,13 +30,15 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^1.0.0 || ^2.0.0-canary.12",
+    "@debonet/es6semaphore": "^1.0.2",
     "ava": "^4.3.0",
+    "chokidar": "^3.5.3",
     "eleventy-plugin-rev": "^1.0.2"
   },
   "peerDependencies": {
     "@11ty/eleventy": "^1.0.0 || ^2.0.0-canary.12",
-    "eleventy-plugin-rev": "^1.0.2",
-    "eleventy-plugin-clean": "^1.1.0"
+    "eleventy-plugin-clean": "^1.1.0",
+    "eleventy-plugin-rev": "^1.0.2"
   },
   "peerDependenciesMeta": {
     "eleventy-plugin-rev": {

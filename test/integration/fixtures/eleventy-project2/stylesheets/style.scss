@@ -1,0 +1,6 @@
+@use "colors";
+@use "header";
+
+body {
+  background-color: colors.$background;
+}

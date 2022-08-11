@@ -1,3 +1,4 @@
 /node_modules/
 /test/integration/fixtures/*
 !/test/integration/fixtures/eleventy-project/
+!/test/integration/fixtures/eleventy-project2/
