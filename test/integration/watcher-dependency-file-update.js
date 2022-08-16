@@ -31,6 +31,8 @@ test.before(async t => {
   dir = createProject("watcher-dependency-file-update");
   proc = spawn("npx", ["@11ty/eleventy", "--watch"], { cwd: dir, shell: true, timeout: 20000 });
   proc.on("exit", (code, signal) => {
+    if (process.platform === "darwin")
+      pid = undefined;
     sem.signal();
   });
   proc.stdout.on("data", function(data) {
