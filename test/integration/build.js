@@ -13,7 +13,7 @@ const { setTimeout } = require("timers/promises");
 
 const test = require("ava");
 
-const createProject = require("./_create-project2");
+const createProject = require("./_create-project-default");
 let dir;
 
 test.before(async t => {

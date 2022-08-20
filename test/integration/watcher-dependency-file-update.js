@@ -14,7 +14,7 @@ const { setTimeout } = require("timers/promises");
 const test = require("ava");
 const Semaphore = require("@debonet/es6semaphore");
 
-const createProject = require("./_create-project2");
+const createProject = require("./_create-project-default");
 let dir;
 let proc;
 let pid;

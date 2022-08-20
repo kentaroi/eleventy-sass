@@ -4,7 +4,7 @@ const path = require("path");
 const { promises: fs } = require("fs");
 const { createHash } = require("crypto");
 const test = require("ava");
-const createProject = require("./_create-project");
+const createProject = require("./_create-project-rev");
 let dir;
 let cssContent = "body{color:red}";
 let revHash = createHash("md5").update(cssContent).digest("hex").slice(0, 8);

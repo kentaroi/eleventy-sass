@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const sourceDir = path.join(__dirname, "fixtures", "eleventy-project2");
+const sourceDir = path.join(__dirname, "fixtures", "eleventy-project-default");
 
 module.exports = function(projectName) {
   let projectDir = path.join(__dirname, "fixtures", projectName);
