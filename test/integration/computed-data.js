@@ -10,7 +10,6 @@ const util = require("util");
 const exec = util.promisify(require("child_process").exec);
 const path = require("path");
 const { promises: fs } = require("fs");
-const { setTimeout } = require("timers/promises");
 
 const test = require("ava");
 
