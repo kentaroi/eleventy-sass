@@ -2,3 +2,4 @@
 /test/integration/fixtures/*
 !/test/integration/fixtures/eleventy-project-default/
 !/test/integration/fixtures/eleventy-project-rev/
+!/test/integration/fixtures/eleventy-project-computed-data/
