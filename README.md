@@ -195,11 +195,11 @@ The link tag to your CSS file will be the following:
 
 By using filters, you can write the above link tag as follows:
 ```liquid
-<link ref="stylesheet" href="{{ "/css/style.css" | rev }}" />
+<link rel="stylesheet" href="{{ "/css/style.css" | rev }}" />
 ```
 
 ```liquid
-<link ref="stylesheet" href="{{ "scss/style.scss" | inputToRevvedOutput }}" />
+<link rel="stylesheet" href="{{ "scss/style.scss" | inputToRevvedOutput }}" />
 ```
 ⚠️  Input paths for `inputToRevvedOutput` must be relative paths from your project root, even if your [input directory](https://www.11ty.dev/docs/config/#input-directory) is not your project root.
 
