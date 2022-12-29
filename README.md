@@ -16,7 +16,7 @@ Even the official Eleventy website has [a page](https://www.11ty.dev/docs/langua
 
 I created the plugin, because I was not satisfied with the above solutions, for example:
 
-- The existing plugins did watch Sass/SCSS files and wrote CSS files by themselves or by using another toolkit, such as gulp.js, instead of using [Eleventy](https://www.11ty.dev/)'s file watching and writing functionality. They might work well, but doesn't seem to be integrated enough with Eleventy.
+- The existing plugins did watch Sass/SCSS files and write CSS files by themselves or by using another toolkit, such as gulp.js, instead of using [Eleventy](https://www.11ty.dev/)'s file watching and writing functionality. They might work well, but doesn't seem to be integrated enough with Eleventy.
 
 - [The page in the official Docs](https://www.11ty.dev/docs/languages/custom/#example-add-sass-support-to-eleventy) is great if you only have Sass/SCSS files which do not have `@use` or `@forward` rules.<br />
 If you use `@use` in your Sass/SCSS files, for example, and you change a dependency Sass/SCSS file, [Eleventy](https://www.11ty.dev/) will compile it (if its filename doesn't start with "\_"), but won't compile the dependant Sass/SCSS files, if you are following the instructions in [the page of the official Docs](https://www.11ty.dev/docs/languages/custom/#example-add-sass-support-to-eleventy).
@@ -81,7 +81,7 @@ As you can see, your Sass/SCSS files in your [input](https://www.11ty.dev/docs/c
 
 Files in [includes](https://www.11ty.dev/docs/config/#directory-for-includes) directory and files whose filenames start with "\_" are not compiled directly but can be used from the other Sass/SCSS files with `@use` and `@forward` rules.
 
-For example, `_gruvbox.scss` file in the above example can be loaded from `style.scss` file with `@use "themes/gruvbox";`, and `tag-cloud.scss` file can be loaded from `style.scss` file with `@use "tag-cloud";`. (The reason you don't have to specify it with `@use "../_includes/tag-cloud";` is that [includes](https://www.11ty.dev/docs/config/#directory-for-includes) ("\_includes") directory is the default `loadPaths` for [eleventy-sass](https://github.com/kentaroi/eleventy-sass). I will describe `loadPaths` [later in this README](#loadpaths-and-includes-keys).)
+For example, `_gruvbox.scss` file in the above example can be loaded from `style.scss` file with `@use "themes/gruvbox";`, and `tag-cloud.scss` file can be loaded from `style.scss` file with `@use "tag-cloud";`. (The reason you don't have to specify it with `@use "../_includes/tag-cloud";` is that [includes](https://www.11ty.dev/docs/config/#directory-for-includes) ("\_includes") directory is the default `loadPaths` for [eleventy-sass](https://github.com/kentaroi/eleventy-sass). I will describe `loadPaths` in [Sass options](https://github.com/kentaroi/eleventy-sass/blob/main/docs/sass-options.md).)
 
 ## For Windows users
 Command samples in this documentation suppose Linux/macOS environments.
