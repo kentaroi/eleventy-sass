@@ -1,6 +1,6 @@
 {
   "name": "eleventy-sass",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "description": "Yet another Sass/SCSS plugin for Eleventy. Source maps, PostCSS and revision hashes are supported.",
   "main": "index.js",
   "scripts": {
