@@ -55,7 +55,7 @@ module.exports = function(eleventyConfig) {
 };
 ```
 
-and execute `npx @11ty/eleventy` or `npx @11ty/elventy --serve` from your shell, you will get the following:
+and execute `npx @11ty/eleventy` or `npx @11ty/eleventy --serve` from your shell, you will get the following:
 ```bash
 ├── .eleventy.js
 ├── dist
@@ -392,9 +392,9 @@ When [Eleventy](https://www.11ty.dev/) detects a file update, it emits an `eleve
 
 If the file is a Sass/SCSS file, [eleventy-sass](https://github.com/kentaroi/eleventy-sass) changes the cache keys for the updated file and its dependant Sass/SCSS files, which invalidates the cached CSSes, so that [Eleventy](https://www.11ty.dev/) will compile all of the files affected.
 
-When compiling Sass/SCSS files, [Eleventy](https://www.11ty.dev/) calls `compile` function of the [elventy-sass](https://github.com/kentaroi/eleventy-sass).
+When compiling Sass/SCSS files, [Eleventy](https://www.11ty.dev/) calls `compile` function of the [eleventy-sass](https://github.com/kentaroi/eleventy-sass).
 
-The `compile` function of [elventy-sass](https://github.com/kentaroi/eleventy-sass) will compile Sass/SCSS files if they don't start with "\_".
+The `compile` function of [eleventy-sass](https://github.com/kentaroi/eleventy-sass) will compile Sass/SCSS files if they don't start with "\_".
 
 The actual compilation is done by [sass](https://www.npmjs.com/package/sass), which is [dart-sass](https://github.com/sass/dart-sass).
 
