@@ -29,13 +29,13 @@
     "sass": "^1.49.7"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^1.0.0 || ^2.0.0-canary.12",
+    "@11ty/eleventy": "^1.0.0 || ^2.0.0-canary.12 || ^2.0.0-beta.1",
     "@debonet/es6semaphore": "^1.0.2",
     "ava": "^4.3.0",
     "eleventy-plugin-rev": "^1.0.2"
   },
   "peerDependencies": {
-    "@11ty/eleventy": "^1.0.0 || ^2.0.0-canary.12",
+    "@11ty/eleventy": "^1.0.0 || ^2.0.0-canary.12 || ^2.0.0-beta.1",
     "eleventy-plugin-clean": "^1.1.0",
     "eleventy-plugin-rev": "^1.0.2"
   },
