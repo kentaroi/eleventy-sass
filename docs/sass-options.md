@@ -8,7 +8,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(sass, {
     sass: {
       style: "expanded",
-      sourceMap: true
+      sourceMap: true,
       loadPaths: ["node_modules/bootstrap/scss"],
       includes: "_includes/stylesheets"
     }
