@@ -25,7 +25,9 @@ However, before passing it to `sass.compileString()`, [eleventy-sass](https://gi
 
 
 ## `loadPaths` and `includes` properties
-If you do not use Sass/SCSS files in other npm packages, you may not have to use these properties.
+First of all, `loadPaths` and `includes` are NOT for teaching Eleventy where your Sass/SCSS files are, but for informing [dart-sass library](https://github.com/sass/dart-sass) how to load other Sass/SCSS files from a Sass/SCSS file by using `@use`, `@forward` or `@import` rules.
+
+Therefore, if you do not use Sass/SCSS files in other npm packages, you may not have to use these properties.
 
 Suppose you neither set value to `loadPaths` nor `includes`, and you have the following:
 
