@@ -173,19 +173,24 @@ module.exports = function(eleventyConfig) {
 };
 ```
 
-You can use filter functions, `rev` and `inputToRevvedOutput`, to add revision hashes.
+You can use filter functions, `rev` and `revvedOutput`, to add revision hashes.
 
-Suppose you have the following project:
+Suppose you have the following project ([input directory](https://www.11ty.dev/docs/config/#input-directory) is `src` and [output directory](https://www.11ty.dev/docs/config/#output-directory) is `dist`):
 ```bash
 .
 ├── .eleventy.js
-├── _site
+├── dist
+│   ├── blog
+│   │   └── eleventy-quick-tips/index.html
 │   ├── css
 │   │   └── style-42df228b.css
 │   └── index.html
-├── index.md
-└── scss
-    └── style.scss
+└── src
+    ├── index.md
+    ├── blog
+    │   └── eleventy-quick-tips.md
+    └── scss
+        └── style.scss
 ```
 
 The link tag to your CSS file will be the following:
@@ -199,9 +204,20 @@ By using filters, you can write the above link tag as follows:
 ```
 
 ```liquid
-<link rel="stylesheet" href="{{ "scss/style.scss" | inputToRevvedOutput }}" />
+<link rel="stylesheet" href="{{ "/scss/style.scss" | revvedOutput }}" />
 ```
-⚠️  Input paths for `inputToRevvedOutput` must be relative paths from your project root, even if your [input directory](https://www.11ty.dev/docs/config/#input-directory) is not your project root.
+⚠️  The paths for the `rev` and `revvedOutput` filters must be relative from the [output](https://www.11ty.dev/docs/config/#output-directory) and [input](https://www.11ty.dev/docs/config/#input-directory) directories respectively and must be prefixed with `/`, or a relative path from the current file.
+
+For example, from `eleventy-quick-tips.md` file, you can also write the link tag as follows:
+```liquid
+<link rel="stylesheet" href="{{ "../../css/style.css" | rev }}" />
+```
+
+```liquid
+<link rel="stylesheet" href="{{ "../scss/style.scss" | revvedOutput }}" />
+```
+
+⚠️  `inputToRevvedOutput` filter will be deprecated. (Input paths for `inputToRevvedOutput` must be relative paths from your project root, even if your [input directory](https://www.11ty.dev/docs/config/#input-directory) is not your project root.)
 
 #### `when` property
 `when` property is a special property, which is used for enabling or disabling the options object by environment/shell variables. For details, see [when options](https://github.com/kentaroi/eleventy-sass/blob/main/docs/when-options.md). 
