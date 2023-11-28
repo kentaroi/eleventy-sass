@@ -7,7 +7,7 @@ const test = require("ava");
 const createProject = require("./_create-project-rev");
 let dir;
 let cssContent = "body{color:red}";
-let revHash = createHash("md5").update(cssContent).digest("hex").slice(0, 8);
+let revHash = createHash("sha256").update(cssContent).digest("hex").slice(0, 8);
 
 test.before(async t => {
   dir = createProject("rev-with-async-permalink-function-that-returns-async-render-function");
