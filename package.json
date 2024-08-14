@@ -30,13 +30,13 @@
     "upath": "^2.0.1"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^1.0.0 || ^2.0.0-canary.12 || ^2.0.0-beta.1",
+    "@11ty/eleventy": "^3.0.0-beta.1",
     "@debonet/es6semaphore": "^1.0.2",
     "ava": "^4.3.0",
     "eleventy-plugin-rev": "^2.0.0"
   },
   "peerDependencies": {
-    "@11ty/eleventy": "^1.0.0 || ^2.0.0-canary.12 || ^2.0.0-beta.1",
+    "@11ty/eleventy": "^3.0.0-beta.1",
     "eleventy-plugin-clean": "^1.1.0",
     "eleventy-plugin-rev": "^2.0.0"
   },
