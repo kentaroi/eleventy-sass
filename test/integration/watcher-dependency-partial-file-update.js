@@ -55,10 +55,11 @@ test.before(async t => {
   await sem.wait();
   await setTimeout(300);
 
-  if (pid && process.kill(pid, "SIGINT"))
+  if (pid) {
+    process.kill(pid, "SIGINT");
     pid = undefined;
-
-  await sem.wait();
+    await sem.wait();
+  }
 });
 
 test("write CSS files compiled from SCSS", async t => {
