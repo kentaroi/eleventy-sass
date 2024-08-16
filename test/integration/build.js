@@ -18,7 +18,7 @@ let dir;
 
 test.before(async t => {
   dir = createProject("build");
-  await exec("npx @11ty/eleventy", { cwd: dir });
+  await exec("npx --node-options=\"--experimental-require-module\" @11ty/eleventy", { cwd: dir });
 });
 
 test("build", async t => {

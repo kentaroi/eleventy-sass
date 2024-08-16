@@ -29,7 +29,7 @@ test.before(async t => {
   let sem = new Semaphore(1);
   await sem.wait();
   dir = createProject("watcher-removing-from-dependencies");
-  proc = spawn("npx", ["@11ty/eleventy", "--watch"], { cwd: dir, shell: true, timeout: 20000 });
+  proc = spawn("npx", ["--node-options=\"--experimental-require-module\"", "@11ty/eleventy", "--watch"], { cwd: dir, shell: true, timeout: 20000 });
   proc.on("exit", (code, signal) => {
     if (process.platform === "darwin")
       pid = undefined;

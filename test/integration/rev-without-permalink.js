@@ -11,7 +11,7 @@ let revHash = createHash("sha256").update(cssContent).digest("hex").slice(0, 8);
 
 test.before(async t => {
   dir = createProject("rev-without-permalink");
-  await exec("npx @11ty/eleventy --config=config-without-permalink.js", { cwd: dir });
+  await exec("npx --node-options=\"--experimental-require-module\" @11ty/eleventy --config=config-without-permalink.js", { cwd: dir });
 });
 
 test("create css file with rev hash", async t => {

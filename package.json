@@ -23,6 +23,9 @@
     "url": "https://github.com/kentaroi/eleventy-sass/issues"
   },
   "homepage": "https://github.com/kentaroi/eleventy-sass#readme",
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "dependencies": {
     "debug": "^4.3.3",
     "kleur": "^4.1.4",

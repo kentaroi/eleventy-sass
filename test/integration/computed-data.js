@@ -23,7 +23,7 @@ test.before(async t => {
 test("build (eleventyComputed.js has a property with String value) #13", async t => {
   let result;
   await t.notThrowsAsync(async () => {
-    result = await exec("npx @11ty/eleventy", { cwd: dir });
+    result = await exec("npx --node-options=\"--experimental-require-module\" @11ty/eleventy", { cwd: dir });
   });
   let stylePath = path.join(dir, "_site", "css", "style.css");
   let styleCSS = await fs.readFile(stylePath, { encoding: "utf8" });
