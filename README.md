@@ -30,6 +30,13 @@ For those of you who are curious about how [eleventy-sass](https://github.com/ke
 npm install eleventy-sass
 ```
 
+For Eleventy 3, install [eleventy-sass@3.0.0-beta.x](https://github.com/kentaroi/eleventy-sass/tree/dev-eleventy3) as follows:
+```shell
+npm install eleventy-sass@^3.0.0-beta.0
+```
+
+[eleventy-sass@3.0.0-beta.x](https://github.com/kentaroi/eleventy-sass/tree/dev-eleventy3) requires Node.js >= 22.
+
 ## Usage
 Open up your Eleventy config file (probably `.eleventy.js`) and use `addPlugin()`:
 
@@ -41,6 +48,14 @@ module.exports = function(eleventyConfig) {
 };
 ```
 That's it. Only the above code in your `.eleventy.js`, your Sass/SCSS files will be compiled to CSS and written in your `output` directory.
+
+### For Eleventy 3 users
+[eleventy-sass@3.0.0-beta.x](https://github.com/kentaroi/eleventy-sass/tree/dev-eleventy3) uses an experimental feature of Node.js 22 to load Eleventy 3 internal modules. You should add `--experimental-require-module` option to your Node commands.
+
+Therefore, instead of running `npx @11ty/eleventy`, use the following command:
+```shell
+npx --node-options="--experimental-require-module" @11ty/eleventy
+```
 
 ### Default behavior
 Suppose your have the following `.eleventy.js`. In this example, your [input directory](https://www.11ty.dev/docs/config/#input-directory) is "src" and your [output directory](https://www.11ty.dev/docs/config/#output-directory) is "dist" since it seems to be widely used settings in Eleventy community.
